@@ -47,12 +47,31 @@ function renderBooks() {
     read.classList.add('tag', book.read ? 'tag--primary' : 'tag--notice')
     read.textContent = book.read ? 'Read' : 'Not read yet'
 
+    const remove = document.createElement('button')
+    remove.classList.add('btn', 'btn--small', 'btn--icon', 'book__remove')
+    remove.type = 'button'
+    remove.dataset.action = 'remove'
+    remove.textContent = '×'
+    remove.setAttribute('aria-label', `Remove ${book.title}`)
+
     meta.append(pages, read)
 
-    card.append(textPair, meta)
+    card.append(remove, textPair, meta)
     booksContainer.appendChild(card)
   })
 }
+
+document.querySelector('.books').addEventListener('click', (event) => {
+  const removeButton = event.target.closest('[data-action="remove"]')
+  if (!removeButton) return
+
+  const id = removeButton.closest('.book').dataset.id
+  const index = myLibrary.findIndex((book) => book.id === id)
+  if (index === -1) return
+
+  myLibrary.splice(index, 1)
+  renderBooks()
+})
 
 const newBookDialog = document.querySelector('#new-book-dialog')
 const newBookForm = document.querySelector('#new-book-form')
