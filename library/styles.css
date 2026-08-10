@@ -14,6 +14,12 @@
   margin-block-start: var(--op-space-medium);
 }
 
+.book__meta-end {
+  display: flex;
+  align-items: center;
+  gap: var(--op-space-small);
+}
+
 .book__remove {
   position: absolute;
   inset-block-start: var(--op-space-small);

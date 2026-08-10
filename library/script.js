@@ -9,6 +9,10 @@ function Book(title, author, pages, read = false) {
   this.id = crypto.randomUUID()
 }
 
+Book.prototype.toggleRead = function () {
+  this.read = !this.read
+}
+
 function addBookToLibrary(title, author, pages, read) {
   const book = new Book(title, author, pages, read)
   myLibrary.push(book)
@@ -54,7 +58,17 @@ function renderBooks() {
     remove.textContent = '×'
     remove.setAttribute('aria-label', `Remove ${book.title}`)
 
-    meta.append(pages, read)
+    const toggle = document.createElement('button')
+    toggle.classList.add('btn', 'btn--small')
+    toggle.type = 'button'
+    toggle.dataset.action = 'toggle-read'
+    toggle.textContent = book.read ? 'Mark as unread' : 'Mark as read'
+
+    const metaEnd = document.createElement('div')
+    metaEnd.classList.add('book__meta-end')
+    metaEnd.append(read, toggle)
+
+    meta.append(pages, metaEnd)
 
     card.append(remove, textPair, meta)
     booksContainer.appendChild(card)
@@ -62,14 +76,19 @@ function renderBooks() {
 }
 
 document.querySelector('.books').addEventListener('click', (event) => {
-  const removeButton = event.target.closest('[data-action="remove"]')
-  if (!removeButton) return
+  const actionButton = event.target.closest('[data-action]')
+  if (!actionButton) return
 
-  const id = removeButton.closest('.book').dataset.id
+  const id = actionButton.closest('.book').dataset.id
   const index = myLibrary.findIndex((book) => book.id === id)
   if (index === -1) return
 
-  myLibrary.splice(index, 1)
+  if (actionButton.dataset.action === 'remove') {
+    myLibrary.splice(index, 1)
+  } else if (actionButton.dataset.action === 'toggle-read') {
+    myLibrary[index].toggleRead()
+  }
+
   renderBooks()
 })
 
