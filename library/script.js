@@ -54,6 +54,33 @@ function renderBooks() {
   })
 }
 
+const newBookDialog = document.querySelector('#new-book-dialog')
+const newBookForm = document.querySelector('#new-book-form')
+
+document.querySelector('#new-book-button').addEventListener('click', () => {
+  newBookForm.reset()
+  newBookDialog.showModal()
+})
+
+document.querySelector('#cancel-book-button').addEventListener('click', () => {
+  newBookDialog.close()
+})
+
+newBookForm.addEventListener('submit', (event) => {
+  event.preventDefault()
+
+  const data = new FormData(newBookForm)
+  addBookToLibrary(
+    data.get('title'),
+    data.get('author'),
+    data.get('pages'),
+    newBookForm.elements.read.checked
+  )
+
+  renderBooks()
+  newBookDialog.close()
+})
+
 addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 310, true)
 addBookToLibrary('Dune', 'Frank Herbert', 412)
 

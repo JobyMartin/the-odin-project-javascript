@@ -12,14 +12,78 @@
   </head>
   <body>
     <main class="container">
-      <header class="library__header">
+      <header class="library__header flex items-center justify-between">
         <div class="text-pair">
           <h1 class="text-pair__title text-pair__title--large">My Library</h1>
         </div>
+
+        <button class="btn btn--primary" type="button" id="new-book-button">
+          New Book
+        </button>
       </header>
 
       <div class="books op-stack"></div>
     </main>
+
+    <dialog class="modal" id="new-book-dialog">
+      <form id="new-book-form">
+        <div class="modal__header">New Book</div>
+
+        <div class="modal__body">
+          <div class="form-group">
+            <label class="form-label" for="book-title">Title</label>
+            <input
+              class="form-control"
+              type="text"
+              id="book-title"
+              name="title"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="book-author">Author</label>
+            <input
+              class="form-control"
+              type="text"
+              id="book-author"
+              name="author"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="book-pages">Pages</label>
+            <input
+              class="form-control"
+              type="number"
+              id="book-pages"
+              name="pages"
+              min="1"
+              step="1"
+              required
+            />
+          </div>
+
+          <div class="form-group form-group--inline">
+            <input
+              class="form-control"
+              type="checkbox"
+              id="book-read"
+              name="read"
+            />
+            <label class="form-label" for="book-read">I've read this one</label>
+          </div>
+        </div>
+
+        <div class="modal__footer">
+          <button class="btn" type="button" id="cancel-book-button">
+            Cancel
+          </button>
+          <button class="btn btn--primary" type="submit">Add Book</button>
+        </div>
+      </form>
+    </dialog>
 
     <script src="script.js"></script>
   </body>
