@@ -4,10 +4,22 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Library</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@rolemodel/optics@2.4.0/dist/css/optics.min.css"
+    />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
-    <h1 id="greeting">Hello, world!</h1>
+    <main class="container">
+      <header class="library__header">
+        <div class="text-pair">
+          <h1 class="text-pair__title text-pair__title--large">My Library</h1>
+        </div>
+      </header>
+
+      <div class="books op-stack"></div>
+    </main>
 
     <script src="script.js"></script>
   </body>

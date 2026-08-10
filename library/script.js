@@ -1,1 +1,60 @@
-console.log("script.js loaded");
+
+const myLibrary = [];
+
+function Book(title, author, pages, read = false) {
+  this.title = title
+  this.author = author
+  this.pages = Number(pages)
+  this.read = read
+  this.id = crypto.randomUUID()
+}
+
+function addBookToLibrary(title, author, pages, read) {
+  const book = new Book(title, author, pages, read)
+  myLibrary.push(book)
+}
+
+function renderBooks() {
+  const booksContainer = document.querySelector('.books')
+  booksContainer.textContent = ''
+
+  myLibrary.forEach((book) => {
+    const card = document.createElement('div')
+    card.classList.add('book', 'card', 'card--padded', 'card--shadow-small')
+    card.dataset.id = book.id
+
+    const textPair = document.createElement('div')
+    textPair.classList.add('text-pair')
+
+    const title = document.createElement('h2')
+    title.classList.add('text-pair__title')
+    title.textContent = book.title
+
+    const author = document.createElement('p')
+    author.classList.add('text-pair__subtitle')
+    author.textContent = book.author
+
+    textPair.append(title, author)
+
+    const meta = document.createElement('div')
+    meta.classList.add('book__meta')
+
+    const pages = document.createElement('span')
+    pages.classList.add('book__pages')
+    pages.textContent = `${book.pages} pages`
+
+    const read = document.createElement('span')
+    read.classList.add('tag', book.read ? 'tag--primary' : 'tag--notice')
+    read.textContent = book.read ? 'Read' : 'Not read yet'
+
+    meta.append(pages, read)
+
+    card.append(textPair, meta)
+    booksContainer.appendChild(card)
+  })
+}
+
+addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 310, true)
+addBookToLibrary('Dune', 'Frank Herbert', 412)
+
+renderBooks()
