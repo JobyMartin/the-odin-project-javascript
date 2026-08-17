@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="vendor/optics.min.css"/>
+    <link rel="stylesheet" href="style.css"/>
+  </head>
+  <body>
+    <div class="op-page">
+      <div class="op-page__main">
+        <div class="content-header">
+          <h1>Tic Tac Toe</h1>
+        </div>
+
+        <div class="op-page__main-content">
+          <div class="game">
+            <form class="game__players form-group">
+              <label class="form-label">
+                Player X name
+                <input class="form-control" type="text" name="playerX" placeholder="Albert" autocomplete="off"/>
+              </label>
+
+              <label class="form-label">
+                Player O name
+                <input class="form-control" type="text" name="playerO" placeholder="Einstein" autocomplete="off"/>
+              </label>
+
+              <button class="btn btn--primary" type="submit">Start Game</button>
+            </form>
+
+            <p class="game__status badge"></p>
+            <div class="board"></div>
+            <button class="game__restart btn" type="button">Restart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="result-modal modal-wrapper" role="dialog" aria-modal="true">
+      <div class="modal-wrapper__backdrop"></div>
+
+      <div class="modal">
+        <div class="modal__header">Game Over</div>
+        <div class="modal__body">
+          <p class="result-modal__message"></p>
+        </div>
+        <div class="modal__footer">
+          <button class="result-modal__new-game btn" type="button">
+            New Game
+          </button>
+
+          <button class="result-modal__play-again btn btn--primary" type="button">
+            Play Again
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>

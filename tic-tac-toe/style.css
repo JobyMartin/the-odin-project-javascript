@@ -1,0 +1,47 @@
+
+.op-page {
+  .op-page__main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.board {
+  display: grid;
+  grid-template-columns: repeat(3, 15rem);
+  gap: var(--op-space-2x-small);
+  width: fit-content;
+  margin-inline: auto;
+  background-color: var(--op-color-primary-base);
+
+  button {
+    background-color: var(--op-color-background);
+    color: var(--op-color-on-background);
+    aspect-ratio: 1;
+    font-size: var(--op-font-2x-large);
+  }
+}
+
+.game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--op-space-3x-large);
+}
+
+.game__players[hidden] {
+  display: none;
+}
+
+.game__players {
+  display: flex;
+  align-items: end;
+  gap: var(--op-space-medium);
+
+  label {
+    display: flex;
+    flex-direction: column;
+    gap: var(--op-space-2x-small);
+  }
+}
