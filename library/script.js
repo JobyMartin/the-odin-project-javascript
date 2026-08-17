@@ -118,8 +118,3 @@ newBookForm.addEventListener('submit', (event) => {
   renderBooks()
   newBookDialog.close()
 })
-
-addBookToLibrary('The Hobbit', 'J.R.R. Tolkien', 310, true)
-addBookToLibrary('Dune', 'Frank Herbert', 412)
-
-renderBooks()
